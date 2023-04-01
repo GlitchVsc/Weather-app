@@ -14,4 +14,30 @@ export function getWeather(lat, lon , timezone){
         },
     }
 )
+// .then(({data}) => {
+//     return {
+//         current: parseCurrentWeather(data),
+//         daily: parseDailyWeather(data),
+//         hourly: parseHourlyWeather(data),
+//     }
+// })
+}
+
+function parseCurrentWeather({current_weather , daily})  {
+    const {
+        temperature: currentTemp,
+        windSpeed: windSpeed,
+        weathercode: iconCode,
+    } = current_weather
+
+    return {
+        // currentTemp:,
+        // highTemp: , 
+        // lowTemp: ,
+        // highFeelsLike: , 
+        // lowFeelsLike: , 
+        // windSpeed: , 
+        // precip: ,
+        // iconCode: , 
+    }
 }
