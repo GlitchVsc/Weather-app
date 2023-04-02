@@ -20,12 +20,11 @@ export function getWeather(lat, lon , timezone){
     }
 })
 }
-
 function parseCurrentWeather({current_weather , daily})  {
     //destructure out data from the current_weather
     const {
         temperature: currentTemp,
-        windSpeed: windSpeed,
+        windspeed: windSpeed,
         weathercode: iconCode,
     } = current_weather
     //destructure out data from the daily array
@@ -36,13 +35,9 @@ function parseCurrentWeather({current_weather , daily})  {
         apparent_temperature_min : [minFeelsLike],
         precipitation_sum : [precip],
     }= daily
-
-    
     //OR 
     //DIAFORETIKOS TROPOS:
     // const maxTemp = daily.temperature_2m_max[0]  
-    
-    
     return {
         currentTemp: Math.round(currentTemp),
         highTemp: Math.round(maxTemp) , 
@@ -54,7 +49,6 @@ function parseCurrentWeather({current_weather , daily})  {
         iconCode , 
     }
 }
-
 function parseDailyWeather({daily}){
     return daily.time.map((time, index) => {
         return {
@@ -64,8 +58,6 @@ function parseDailyWeather({daily}){
         }
     })
 }
-
-
 function parseHourlyWeather({hourly, current_weather}){
     return hourly.time.map((time , index) =>{
         return { 
@@ -78,3 +70,5 @@ function parseHourlyWeather({hourly, current_weather}){
         }
     }).filter(({timestamp}) => timestamp >= current_weather.time * 1000)
 }
+
+
