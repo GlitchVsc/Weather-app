@@ -2,6 +2,27 @@ import './style.css'
 import {getWeather} from "./weather"
 import {ICON_MAP}  from './iconMap' 
 
+navigator.geolocation.getCurrentPosition(positionSuccess, positionError)
+
+function positionSuccess({ coords }) {
+    getWeather(
+      coords.latitude,
+      coords.longitude,
+      Intl.DateTimeFormat().resolvedOptions().timeZone
+    )
+      .then(renderWeather)
+      .catch(e => {
+        console.error(e)
+        alert("Error getting weather.")
+      })
+  }
+  
+  function positionError() {
+    alert(
+      "There was an error getting your location. Please allow us to use your location and refresh the page."
+    )
+  }
+
 getWeather(10,10, Intl.DateTimeFormat().resolvedOptions().timeZone)
 .then(renderWeather)
 .catch(e => {
